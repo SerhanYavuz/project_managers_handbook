@@ -9,23 +9,19 @@
 <body>
     <div class="container">
         <h1>Sadece İkisini Seçebilirsiniz!</h1>
-        <div class="toggle-container">
-            <label class="switch">
-                <input type="checkbox" id="selectionToggle">
-                <span class="slider round"></span>
-            </label>
-            <span class="toggle-label">Seçim Modu</span>
-        </div>
         <div class="options-container">
-            <div class="option" id="ucuz">
-                <span>Ucuz</span>
-            </div>
-            <div class="option" id="hizli">
-                <span>Hızlı</span>
-            </div>
-            <div class="option" id="kaliteli">
-                <span>Kaliteli</span>
-            </div>
+            <label class="toggle-button">
+                <input type="checkbox" id="ucuz">
+                <span class="toggle-label">Ucuz</span>
+            </label>
+            <label class="toggle-button">
+                <input type="checkbox" id="hizli">
+                <span class="toggle-label">Hızlı</span>
+            </label>
+            <label class="toggle-button">
+                <input type="checkbox" id="kaliteli">
+                <span class="toggle-label">Kaliteli</span>
+            </label>
         </div>
         <div class="selection-text">
             <p>Seçimleriniz: <span id="selections"></span></p>

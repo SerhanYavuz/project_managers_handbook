@@ -1,44 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const options = document.querySelectorAll('.option');
+    const options = document.querySelectorAll('.toggle-button input');
     const selectionsText = document.getElementById('selections');
     const resetBtn = document.getElementById('resetBtn');
-    const selectionToggle = document.getElementById('selectionToggle');
     const commentsList = document.getElementById('commentsList');
     const submitComment = document.getElementById('submitComment');
     const authorInput = document.getElementById('authorInput');
     const commentInput = document.getElementById('commentInput');
     let selectedOptions = [];
-    let selectionMode = false;
-
-    // Toggle button functionality
-    selectionToggle.addEventListener('change', () => {
-        selectionMode = selectionToggle.checked;
-        if (!selectionMode) {
-            options.forEach(option => option.classList.remove('selected'));
-            selectedOptions = [];
-            updateSelectionText();
-        }
-    });
 
     options.forEach(option => {
-        option.addEventListener('click', () => {
-            if (!selectionMode) return;
-
-            if (option.classList.contains('selected')) {
-                option.classList.remove('selected');
-                selectedOptions = selectedOptions.filter(item => item !== option.id);
-            } else {
+        option.addEventListener('change', () => {
+            if (option.checked) {
                 if (selectedOptions.length < 2) {
-                    option.classList.add('selected');
                     selectedOptions.push(option.id);
+                } else {
+                    option.checked = false;
+                    alert('En fazla 2 seçenek seçebilirsiniz!');
+                    return;
                 }
+            } else {
+                selectedOptions = selectedOptions.filter(item => item !== option.id);
             }
             updateSelectionText();
         });
     });
 
     resetBtn.addEventListener('click', () => {
-        options.forEach(option => option.classList.remove('selected'));
+        options.forEach(option => option.checked = false);
         selectedOptions = [];
         updateSelectionText();
     });

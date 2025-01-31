@@ -30,116 +30,45 @@ h1 {
     margin: 40px 0;
 }
 
-.option {
+/* Remove old .option styles and add new toggle button styles */
+.toggle-button {
     position: relative;
-    width: 120px;
-    height: 120px;
-    background-color: #fff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-block;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: 3px solid #333;
 }
 
-.option:hover {
+.toggle-button input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.toggle-button .toggle-label {
+    display: block;
+    padding: 15px 30px;
+    background-color: #fff;
+    border: 3px solid #333;
+    border-radius: 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.toggle-button:hover .toggle-label {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.option.selected {
+.toggle-button input:checked + .toggle-label {
     background-color: #4CAF50;
     color: white;
     border-color: #45a049;
 }
 
-.option span {
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-.selection-text {
-    margin-top: 20px;
-    font-size: 1.2em;
-}
-
-#resetBtn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1.1em;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#resetBtn:hover {
-    background-color: #d32f2f;
-}
-
-/* Toggle Switch Styles */
-.toggle-container {
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-}
-
-input:checked + .slider {
-    background-color: #4CAF50;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
+/* Remove old toggle switch styles */
+/* Remove .switch, .slider, etc. styles */
 
 /* Comments Section Styles */
 .comments-section {
