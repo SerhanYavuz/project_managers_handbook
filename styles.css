@@ -141,4 +141,142 @@ h1 {
 
 .comment-text {
     color: #333;
+}
+
+/* Bigger Reset Button */
+#resetBtn {
+    margin: 30px 0;
+    padding: 15px 40px;
+    font-size: 1.4em;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#resetBtn:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Bargaining Section Styles */
+.bargaining-section {
+    margin-top: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.job-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.job-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.job-form input[type="text"] {
+    flex: 2;
+}
+
+.job-form input[type="number"] {
+    flex: 1;
+}
+
+#addJob {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.job-card {
+    background-color: #f8f8f8;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.job-title {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.job-estimate {
+    color: #666;
+}
+
+.job-voting {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.vote-button {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.vote-up {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.vote-down {
+    background-color: #f44336;
+    color: white;
+}
+
+.current-estimate {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.correct-guesses {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #e8f5e9;
+    border-radius: 8px;
+}
+
+.correct-guesses h3 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+#correctGuessesList {
+    list-style: none;
+    padding: 0;
+}
+
+#correctGuessesList li {
+    padding: 8px 0;
+    border-bottom: 1px solid #c8e6c9;
+    color: #1b5e20;
 } 

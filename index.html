@@ -25,7 +25,26 @@
         <div class="selection-text">
             <p>Seçimleriniz: <span id="selections"></span></p>
         </div>
-        <button id="resetBtn">Sıfırla</button>
+        <button id="resetBtn">SIFIRLA</button>
+
+        <!-- New Bargaining Section -->
+        <div class="bargaining-section">
+            <h2>Pazarlık Et</h2>
+            <div class="job-form">
+                <input type="text" id="jobTitle" placeholder="İş Tanımı">
+                <input type="number" id="estimatedHours" placeholder="Tahmini Saat">
+                <button id="addJob">İş Ekle</button>
+            </div>
+            
+            <div class="jobs-list">
+                <!-- Jobs will be added here dynamically -->
+            </div>
+
+            <div class="correct-guesses">
+                <h3>Doğru Tahminler</h3>
+                <ul id="correctGuessesList"></ul>
+            </div>
+        </div>
 
         <!-- New Comments Section -->
         <div class="comments-section">

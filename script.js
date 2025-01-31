@@ -114,4 +114,94 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial load
     loadComments();
+
+    // Add new code after the existing event listeners
+    const jobForm = document.querySelector('.job-form');
+    const jobsList = document.querySelector('.jobs-list');
+    const correctGuessesList = document.getElementById('correctGuessesList');
+    let jobs = [];
+
+    document.getElementById('addJob').addEventListener('click', () => {
+        const titleInput = document.getElementById('jobTitle');
+        const hoursInput = document.getElementById('estimatedHours');
+        
+        if (!titleInput.value || !hoursInput.value) {
+            alert('Lütfen iş tanımı ve tahmini süreyi doldurun!');
+            return;
+        }
+
+        const newJob = {
+            id: Date.now(),
+            title: titleInput.value,
+            actualHours: parseInt(hoursInput.value),
+            currentEstimate: parseInt(hoursInput.value),
+            guesses: [],
+            revealed: false
+        };
+
+        jobs.push(newJob);
+        renderJobs();
+
+        // Clear inputs
+        titleInput.value = '';
+        hoursInput.value = '';
+    });
+
+    function renderJobs() {
+        jobsList.innerHTML = '';
+        jobs.forEach(job => {
+            const jobElement = createJobElement(job);
+            jobsList.appendChild(jobElement);
+        });
+    }
+
+    function createJobElement(job) {
+        const div = document.createElement('div');
+        div.className = 'job-card';
+        div.innerHTML = `
+            <div class="job-header">
+                <span class="job-title">${job.title}</span>
+                <span class="job-estimate">${job.revealed ? `Gerçek süre: ${job.actualHours} saat` : 'Tahmin edilmemiş'}</span>
+            </div>
+            <div class="job-voting">
+                <button class="vote-button vote-down" onclick="vote('${job.id}', 'down')">▼</button>
+                <span class="current-estimate">${job.currentEstimate} saat</span>
+                <button class="vote-button vote-up" onclick="vote('${job.id}', 'up')">▲</button>
+                ${!job.revealed ? `<button onclick="revealActual('${job.id}')">Sonucu Göster</button>` : ''}
+            </div>
+        `;
+        return div;
+    }
+
+    // Add these functions to the global scope
+    window.vote = function(jobId, direction) {
+        const job = jobs.find(j => j.id.toString() === jobId);
+        if (!job || job.revealed) return;
+
+        const change = direction === 'up' ? 1 : -1;
+        job.currentEstimate += change;
+        job.guesses.push({
+            estimate: job.currentEstimate,
+            timestamp: Date.now()
+        });
+
+        renderJobs();
+    };
+
+    window.revealActual = function(jobId) {
+        const job = jobs.find(j => j.id.toString() === jobId);
+        if (!job) return;
+
+        job.revealed = true;
+        
+        // Find correct guesses
+        const correctGuesses = job.guesses.filter(guess => guess.estimate === job.actualHours);
+        if (correctGuesses.length > 0) {
+            const li = document.createElement('li');
+            li.textContent = `"${job.title}" için doğru tahmin: ${job.actualHours} saat`;
+            correctGuessesList.appendChild(li);
+        }
+
+        renderJobs();
+    };
 }); 
