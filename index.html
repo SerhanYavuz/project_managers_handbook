@@ -9,6 +9,13 @@
 <body>
     <div class="container">
         <h1>Sadece İkisini Seçebilirsiniz!</h1>
+        <div class="toggle-container">
+            <label class="switch">
+                <input type="checkbox" id="selectionToggle">
+                <span class="slider round"></span>
+            </label>
+            <span class="toggle-label">Seçim Modu</span>
+        </div>
         <div class="triangle">
             <div class="option" id="ucuz">
                 <span>Ucuz</span>
@@ -29,6 +36,17 @@
             <p>Seçimleriniz: <span id="selections"></span></p>
         </div>
         <button id="resetBtn">Sıfırla</button>
+
+        <!-- New Comments Section -->
+        <div class="comments-section">
+            <h2>Yorumlar</h2>
+            <div class="comment-form">
+                <input type="text" id="authorInput" placeholder="İsminiz">
+                <textarea id="commentInput" placeholder="Yorumunuzu yazın..."></textarea>
+                <button id="submitComment">Yorum Ekle</button>
+            </div>
+            <div id="commentsList"></div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
