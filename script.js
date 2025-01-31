@@ -46,15 +46,25 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadComments() {
         try {
             const response = await fetch('comments.json');
+            if (!response.ok) {
+                throw new Error('Failed to load comments');
+            }
             const data = await response.json();
-            displayComments(data.comments);
+            displayComments(data.comments || []);
         } catch (error) {
             console.error('Error loading comments:', error);
+            // Initialize with empty array if there's an error
+            displayComments([]);
         }
     }
 
     function displayComments(comments) {
         commentsList.innerHTML = '';
+        if (comments.length === 0) {
+            commentsList.innerHTML = '<div class="comment-card">Henüz yorum yapılmamış.</div>';
+            return;
+        }
+        
         comments.sort((a, b) => new Date(b.date) - new Date(a.date))
                .forEach(comment => {
             const commentElement = createCommentElement(comment);
@@ -97,23 +107,43 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            // In a real application, you would send this to a server
-            // For now, we'll just update the UI
+            // Get current comments
             const response = await fetch('comments.json');
             const data = await response.json();
-            data.comments.unshift(newComment);
-            displayComments(data.comments);
+            
+            // Add new comment to the beginning
+            const updatedComments = [newComment, ...(data.comments || [])];
+            
+            // In a real application, you would send this to a server
+            // For now, we'll just update the UI
+            displayComments(updatedComments);
 
             // Clear inputs
             authorInput.value = '';
             commentInput.value = '';
+            
+            // Save to localStorage as a temporary solution
+            localStorage.setItem('comments', JSON.stringify(updatedComments));
+            
         } catch (error) {
             console.error('Error saving comment:', error);
+            alert('Yorum kaydedilirken bir hata oluştu. Lütfen tekrar deneyin.');
         }
     });
 
-    // Initial load
-    loadComments();
+    // Add this function to load comments from localStorage on page load
+    function initializeComments() {
+        const savedComments = localStorage.getItem('comments');
+        if (savedComments) {
+            displayComments(JSON.parse(savedComments));
+        } else {
+            displayComments([]);
+        }
+    }
+
+    // Modify the initial load to use localStorage
+    // loadComments(); // Remove or comment out this line
+    initializeComments(); // Add this line instead
 
     // Add new code after the existing event listeners
     const jobForm = document.querySelector('.job-form');
